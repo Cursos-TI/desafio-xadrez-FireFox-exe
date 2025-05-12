@@ -1,45 +1,71 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código simula os movimentos das peças de xadrez utilizando loops e prints.
+// Torre - movimento recursivo para a direita
+void mov_torre(int casas){
+    if (casas > 0 ){
+        printf("Direita\n");
+        mov_torre(casas - 1);
+    }
+}
+
+// Bispo - movimento recursivo na diagonal superior direita
+void mov_bispo(int casas){
+    if (casas > 0){
+        printf("Diagonal Superior Direita\n");
+        mov_bispo(casas - 1);
+    }
+}
+
+// Rainha 8 pra esquerda
+void mov_rainha(int casas){
+    if (casas > 0){
+        printf("Esquerda\n");
+        mov_rainha(casas - 1);
+    }
+}
+
+// movimentato horizontal cavalo
+void moverHorizontal(int passos) {
+    if (passos > 0) {
+        printf("Direita\n");  // ou Esquerda
+        moverHorizontal(passos - 1);
+    }
+}
+//movimento vertical cavalo
+void moverVertical(int passos) {
+    if (passos > 0) {
+        printf("Cima\n");  // ou Baixo
+        moverVertical(passos - 1);
+    }
+}
+
+// junção do horizontal e vertical 
+void cavalo(int movimentos) {
+    if (movimentos > 0) {
+        moverHorizontal(2);
+        moverVertical(3); 
+    }
+}
 
 int main() {
-   const int bispo = 5; // O Bispo vai se mover 5 casas na diagonal
-   const int rainha = 8; // A Rainha vai se mover 8 casas para a esquerda
-   const int torre = 5; // A Torre vai se mover 5 casas para a direita
+    const int bispo = 5;
+    const int rainha = 8;
+    const int torre = 5;
+    const int movimentosCavalo = 2;
 
-    //Torre - 5 casas para a direita
-    printf("\nmovimentação da Torre\n");
-    for (int mov = 0; mov < torre; mov++){
-        printf("\nDireita\n");
-    }
+    printf("\nMovimentação da Torre\n");
+    mov_torre(torre); // chamada moov_torre
 
-    // Bispo - 5 casas na diagonal superior direita (Cima + Direita)
-    printf("\nMovimenação do Bispo\n");
-    for(int mov = 0; mov < bispo; mov++){
-        printf("\nDiagonal direita\n");
-    }
+    printf("\nMovimentação do Bispo\n");
+    mov_bispo(bispo); // chamado mov_bispo
 
-    //Rainha - 8 casas para a esquerda
+    //rainha e seus 8 movimentos
     printf("\nMovimentação da Rainha\n");
-    for (int mov = 0; mov < rainha;mov++){ 
-        printf("\nEsquerda\n");
-    }
+    mov_rainha(rainha); 
 
-    //Cavalo - 2 passos para a Direita e 2 passo para Perpendicular.
-    //horizontal
-    printf("\nMovimenação cavalo\n");
-    for (int i = 0; i < 1; i++) { //
-    for (int j = 0; j < 2; j++) {
-        printf("Direita\n");
-    }
-        //vertical
-        int h = 0;
-        while (h < 2) {
-            printf("Cima\n");
-            h++;
-        }
-    }
+
+    printf("\nMovimentação do Cavalo\n");
+    cavalo(movimentosCavalo); // chamada mov_cavalo
 
     return 0;
 }
